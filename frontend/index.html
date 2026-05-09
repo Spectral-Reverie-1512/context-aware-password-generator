@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Password Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <h1 class="app-title">Context-Based Password Generator</h1>
+        <p class="app-subtitle">
+          Provide some context about a user or scenario and generate password suggestions conditioned on it.
+        </p>
+      </header>
+
+      <main class="app-main">
+        <section class="card">
+          <form id="generator-form" class="form">
+            <label class="field">
+              <span class="field-label">Context</span>
+              <textarea
+                id="context-input"
+                class="field-input field-textarea"
+                placeholder="Example: Employee at ACME Corp, uses Gmail and GitHub, likes basketball and rock music..."
+                rows="6"
+              ></textarea>
+            </label>
+
+            <div class="field field-inline">
+              <label>
+                <span class="field-label">Number of passwords</span>
+                <input
+                  type="number"
+                  id="count-input"
+                  class="field-input field-input-small"
+                  min="1"
+                  max="5000"
+                  value="2000"
+                />
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field-label">Seed (optional)</span>
+              <input
+                type="number"
+                id="seed-input"
+                class="field-input"
+                placeholder="e.g. 42"
+              />
+            </label>
+
+            <div class="grid-four">
+              <label class="field">
+                <span class="field-label">Min length</span>
+                <input type="number" id="minlen-input" class="field-input" min="5" max="64" value="5" />
+              </label>
+              <label class="field">
+                <span class="field-label">Max length</span>
+                <input type="number" id="maxlen-input" class="field-input" min="5" max="128" value="32" />
+              </label>
+              <label class="field checkbox-field">
+                <input type="checkbox" id="req-symbol-input" checked />
+                <span>Require symbol</span>
+              </label>
+              <label class="field checkbox-field">
+                <input type="checkbox" id="req-digit-input" checked />
+                <span>Require digit</span>
+              </label>
+            </div>
+            <label class="field">
+              <span class="field-label">Intended Password (Required)</span>
+              <input
+                id="audit-password"
+                class="field-input"
+                placeholder="Enter the password you want to test"
+                required
+              />
+            </label>
+
+            <button type="submit" class="button-primary">
+              Generate passwords
+            </button>
+
+            <p id="status-text" class="status-text" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="card results-card" id="results-card">
+          <div class="results-header">
+            <h2 class="results-title">Generated passwords</h2>
+            <div class="results-actions">
+              <button id="download-button" class="button-ghost" type="button">
+                Download .txt
+              </button>
+              <button id="copy-all-button" class="button-ghost" type="button">
+                Copy all
+              </button>
+            </div>
+          </div>
+          <!-- <div class="audit-row">
+            <input id="audit-password" class="field-input" placeholder="(Optional) Enter the password you set to check if it appears in this list" />
+            <button id="audit-button" class="button-ghost" type="button">Check coverage</button>
+          </div> -->
+          <!-- <label class="field">
+            <span class="field-label">Intended Password (Required)</span>
+            <input id="audit-password" class="field-input" required
+              placeholder="Enter the password you want to test" />
+          </label> -->
+          <div id="audit-status" class="status-text status-text--info" 
+              style="margin-bottom: 10px; font-size: 0.95rem;">
+          </div>
+          <ul id="results-list" class="results-list"></ul>
+        </section>
+
+        <!-- Create a protected demo PDF -->
+        <section class="card" id="pdf-card">
+          <form id="pdf-form" class="form">
+            <div>
+              <h2 class="results-title">Create a protected demo PDF</h2>
+              <p class="status-text" style="margin: 6px 0 0 0;">
+                Creates a password-protected PDF for your demo (downloaded to your machine).
+              </p>
+            </div>
+
+            <div class="grid-two">
+              <label class="field">
+                <span class="field-label">Password to set</span>
+                <input id="pdf-password" class="field-input" placeholder="e.g. Momo2026!aniKpop#" />
+              </label>
+              <label class="field">
+                <span class="field-label">Filename</span>
+                <input id="pdf-filename" class="field-input" value="demo_protected.pdf" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field-label">Content (metadata)</span>
+              <textarea
+                id="pdf-content"
+                class="field-input field-textarea"
+                rows="3"
+                placeholder="Short text stored in PDF metadata (optional)"
+              ></textarea>
+            </label>
+
+            <button type="submit" class="button-primary">Create & download PDF</button>
+            <p id="pdf-status" class="status-text" aria-live="polite"></p>
+          </form>
+        </section>
+
+        
+      </main>
+
+      <!-- footer intentionally left empty for a cleaner look -->
+    </div>
+
+    <script src="app.js?v=2"></script>
+  </body>
+  </html>
+

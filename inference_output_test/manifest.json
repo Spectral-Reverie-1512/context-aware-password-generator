@@ -1,0 +1,7 @@
+{
+  "context_text_path": "D:\\DLP\\RockYou Datasets\\demo_inference_output_test\\context.txt",
+  "structured_context_path": "D:\\DLP\\RockYou Datasets\\demo_inference_output_test\\stage25_structured_context.json",
+  "context_vector_path": "D:\\DLP\\RockYou Datasets\\demo_inference_output_test\\stage25_context_vec.json",
+  "generated_passwords_path": "D:\\DLP\\RockYou Datasets\\demo_inference_output_test\\passwords.txt",
+  "generated_details_path": "D:\\DLP\\RockYou Datasets\\demo_inference_output_test\\passwords_details.json"
+}
